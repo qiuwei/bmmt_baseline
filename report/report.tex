@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{A Short Report of My Solution to the Assignment}
+
+\author{Wei Qiu}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Directory structure}
+I reorganized the files to make my solution easier to explain.
+\begin{itemize}
+    \item All the data is located at data.
+    \item Test data is in data/test. And test.en is copied to reference0.
+    \item Train data is in data/train. 
+    \item Dev data is in data/dev.
+\end{itemize}
+
+\section{Problem 1 \& 3}
+
+A baseline system is not so interesting.
+I address subproblem 1 and 3 together, i.e, I get a fine-tuned system using the development set. 
+The config file is located at baseline/config.
+
+\section{Problem 2}
+The first idea comes to my mind is to simply append all of the terminology table to the training table.
+
+The trained model using this idea is located at prob2. The correspoding training data is at data/train\_term.
+
+A further research shows that moses has an advanced feature that can let the user specify how to translate certain words by marking up them during preprocessing.
+This may be the best approach to deal with external teminnology dictionary.
+
+
+
+
+\section{Problem 5: further improvement}
+There are at least two ways to improve the translation quality:
+\begin{itemize}
+    \item As German is an agglutinative language, splitting up the compound words can reduce the sparsity. 
+    \item As the word order in German has much more freedom than English, a preprocessing step which always normalize German sentence to SVO can reduce the sparisity as well.
+
+\end{itemize}
+\end{document}
