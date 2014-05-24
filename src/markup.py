@@ -18,7 +18,7 @@ def process_de_str(destr, term_dict, depattern):
     """
     preprocess the input German string to add the xml markup
     """
-    return depattern.sub(lambda m: r'<np translation={1}>{2}<\np>'.format(term_dict.get(m.group()), m.group()), destr)
+    return depattern.sub(lambda m: r'<np translation="{0}">{1}<\np>'.format(term_dict.get(m.group()), m.group()), destr)
 
 
 def build_de_pattern(term_dict):
@@ -37,11 +37,11 @@ def process_de_file(path, term):
     depattern = build_de_pattern(term_dict)
     with open(path, 'r') as infile:
         for line in infile:
-            print process_de_str(line, term_dict, depattern)
+            print process_de_str(line.strip(), term_dict, depattern)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='wrap up the terminologies occurred in input file with xml markup')
     parser.add_argument('--term', help='path to the terminology file')
     parser.add_argument('path', help='path to the input file')
 
