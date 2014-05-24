@@ -14,8 +14,8 @@ moses-bin-dir = $moses-src-dir/bin
 external-bin-dir = $home-dir/work/root/usr/bin 
 data-dir = $exp-dir/data
 train-dir = $data-dir/train_term
-dev-dir = $data-dir/dev-xmlmarkup
-test-dir = $data-dir/test-xmlmarkup
+dev-dir = $data-dir/dev_xmlmarkup
+test-dir = $data-dir/test_xmlmarkup
 irstlm-dir = $home-dir/work/root/opt/irstlm/bin
 
 
