@@ -18,7 +18,7 @@ def process_de_str(destr, term_dict, depattern):
     """
     preprocess the input German string to add the xml markup
     """
-    return depattern.sub(lambda m: r'<np translation="{0}">{1}<\np>'.format(term_dict.get(m.group()), m.group()), destr)
+    return depattern.sub(lambda m: r'<np translation="{0}">{1}</np>'.format(term_dict.get(m.group()), m.group()), destr)
 
 
 def build_de_pattern(term_dict):

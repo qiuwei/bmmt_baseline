@@ -13,8 +13,8 @@ moses-script-dir = $moses-src-dir/scripts
 moses-bin-dir = $moses-src-dir/bin
 external-bin-dir = $home-dir/work/root/usr/bin 
 data-dir = $exp-dir/data
-train-dir = $data-dir/train_term
-dev-dir = $data-dir/dev_xmlmarkup
+train-dir = $data-dir/train
+dev-dir = $data-dir/dev
 test-dir = $data-dir/test_xmlmarkup
 irstlm-dir = $home-dir/work/root/opt/irstlm/bin
 
@@ -144,7 +144,7 @@ nbest = 100
 # I've added -inputtype 2 to support lattice
 #decoder-settings = "-threads 16 -inputtype 2 -max-phrase-length 60"
 
-decoder-settings = "-threads 16 -xml-input exclusive" 
+decoder-settings = "-threads 16" 
 ### if tuning should be skipped, specify this here
 # and also point to a configuration file that contains
 # pointers to all relevant model files
@@ -183,7 +183,7 @@ raw-stem = CORPUS:raw-stem
 #
 detokenizer = "$moses-script-dir/tokenizer/detokenizer.perl -l $output-extension"
 
-decoder-settings = "-threads 4"
+decoder-settings = "-threads 4 -xml-input exclusive"
 
 ### should output be scored case-sensitive (default: no)?
 #
