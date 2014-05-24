@@ -1,12 +1,14 @@
 \documentclass[a4paper]{article}
 
 \usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[utf8]{inputenc}
+%\usepackage{amsmath}
+%\usepackage{graphicx}
+%\usepackage[colorinlistoftodos]{todonotes}
 \usepackage{bigfoot}
 \usepackage{hyperref}
+\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
+\bibliography{report}
 
 \title{A Short Report of My Solution to the Assignment}
 
@@ -41,7 +43,10 @@ The first idea comes to my mind is to simply append all of the terminology table
 The trained model using this idea is located at prob2. The corresponding training data is at data/train\_term.
 
 A further research shows that moses has an advanced feature that can let the user specify how to translate certain words by marking up them during preprocessing.\footnote{\url{http://www.statmt.org/moses/?n=Moses.AdvancedFeatures#ntoc11}}
-This may be the best approach to deal with external terminology dictionary.
+This may be the best approach to deal with external terminology dictionary.  (Using place holder may be another choice, but not as convenient as xml-input feature provided by moses.)
+
+A python script src/markup wrap the items occurred in the terminology into xml format which can be accepted by moses.
+Corresponding experiment is located at prob2-xmlmarkup.
 
 
 
@@ -53,24 +58,33 @@ There are at least two ways to improve the translation quality:
     \item As the word order in German has much more freedom than English, a preprocessing step which always normalize German sentence to SVO can reduce the sparsity as well.
 \end{itemize}
 For the first idea, I found tools such as jwordsplitter\footnote{\url{http://www.danielnaber.de/jwordsplitter/index_en.html}} and compound-splitter\footnote{\url{https://github.com/dweiss/compound-splitter}}. 
-For the second idea, I found that the idea has been explored since 2005.
+For the second idea, I found that the idea has been explored since \citet{xia2004improving}. \citet{collins2005clause} was on German-English language pair.
 
 
 \section{Result}
 \begin{table}
     \centering
     \begin{tabular}{l|r|r|r|r|r}
+        \hline
         Name & Tuning & BLEU & METEOR & GTM & TER \\
-        Baseline & none& & & & \\
-        Baseline & batch-mira & & & & \\
-        Baseline+append terminology & pro & & & & \\
-        Baseline+XML markup & none & & & &\\
+        \hline
+        Baseline & none& 0.2307 & 0.2523 & 0.1951 & 0.6258 \\
+        Baseline & batch-mira & 0.0055 & 0.1449  & 0.0334 & 4.9259 \\
+        Baseline & pro & 0.2436 & 0.2601 & 0.1942& 0.6382 \\
+        Baseline+append terminology & batch-mira & 0.2442 & 0.2638 & 0.1928 & 0.6512 \\
+        Baseline+append terminology & pro & 0.2444 & 0.2604 & 0.1952 & 0.6395 \\
+        Baseline+XML markup & pro & 24.36 & 0.26 &  0.1942 & 0.6384\\
         Compound words segment & none & & & &\\
         Word pre-ordering & none & & & &\\
-        Compound words segment+ word order normalize & none & & & &\\
+        \hline
     \end{tabular}
     \caption{Result}
     \label{tab:result}
 \end{table}
 
+The results are presented in Table~\ref{tab:result}. 
+The tuning step using batch-mira seem to be quite unreliable due to the relatively small size of dev set.
+So we only use PRO(Pairwise Rank Optimization) for xmlmarkup.
+
+\printbibliography
 \end{document}
