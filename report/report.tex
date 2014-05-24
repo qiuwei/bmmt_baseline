@@ -73,7 +73,7 @@ For the second idea, I found that the idea has been explored since \citet{xia200
         Baseline & pro & 0.2436 & 0.2601 & 0.1942& 0.6382 \\
         Baseline+append terminology & batch-mira & 0.2442 & 0.2638 & 0.1928 & 0.6512 \\
         Baseline+append terminology & pro & 0.2444 & 0.2604 & 0.1952 & 0.6395 \\
-        Baseline+XML markup & pro & 24.36 & 0.26 &  0.1942 & 0.6384\\
+        Baseline+XML markup & pro & 0.2436 & 0.26 &  0.1942 & 0.6384\\
         Compound words segment & none & & & &\\
         Word pre-ordering & none & & & &\\
         \hline
@@ -85,6 +85,7 @@ For the second idea, I found that the idea has been explored since \citet{xia200
 The results are presented in Table~\ref{tab:result}. 
 The tuning step using batch-mira seem to be quite unreliable due to the relatively small size of dev set.
 So we only use PRO(Pairwise Rank Optimization) for xmlmarkup.
+To integrate the terminology, both methods show similar performance.
 
 \printbibliography
 \end{document}
