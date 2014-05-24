@@ -7,7 +7,7 @@
 home-dir = /home/wqiu
 exp-dir = /home/wqiu/work/wqiu/bmmt/
 
-working-dir = $home-dir/work/wqiu/bmmt/baseline
+working-dir = $home-dir/work/wqiu/bmmt/baseline-tune
 moses-src-dir = $home-dir/work/root/opt/moses
 moses-script-dir = $moses-src-dir/scripts
 moses-bin-dir = $moses-src-dir/bin
@@ -40,7 +40,7 @@ output-extension = en
 
 [CORPUS]
 
-max-sentence-length = 80
+max-sentence-length = 80 
 
 [CORPUS:bmmt] 
 raw-stem = $train-dir/train
@@ -119,19 +119,19 @@ lexicalized-reordering = msd-bidirectional-fe
 
 ### tuning script to be used
 #
-#tuning-script = $moses-script-dir/training/mert-moses.pl
-#tuning-settings = "-mertdir $moses-bin-dir "
+tuning-script = $moses-script-dir/training/mert-moses.pl
+tuning-settings = "-mertdir $moses-bin-dir "
 
 ### specify the corpus used for tuning 
 # it should contain 100s if not 1000s of sentences
 #
-#raw-input = $dev-dir/dev.$input-extension
+raw-input = $dev-dir/dev.$input-extension
  
-#raw-reference = $dev-dir/dev.$output-extension
+raw-reference = $dev-dir/dev.$output-extension
 
 ### size of n-best list used (typically 100)
 #
-#nbest = 100
+nbest = 100
 
 ### ranges for weights for random initialization
 # if not specified, the tuning script will use generic ranges
@@ -144,15 +144,12 @@ lexicalized-reordering = msd-bidirectional-fe
 # I've added -inputtype 2 to support lattice
 #decoder-settings = "-threads 16 -inputtype 2 -max-phrase-length 60"
 
-#decoder-settings = "-threads 16" 
+decoder-settings = "-threads 16" 
 ### if tuning should be skipped, specify this here
 # and also point to a configuration file that contains
 # pointers to all relevant model files
 #
 #config = 
-# we skip the tuning here
-weight-config = [TRAINING:config]
-
 
 
 #######################################################
@@ -207,7 +204,7 @@ multi-bleu = "$moses-script-dir/generic/multi-bleu.perl -lc"
 #
 # meteor = 
 
-[EVALUATION:baseline]
+[EVALUATION:baseline-tune]
 raw-input = $test-dir/test.$input-extension
 raw-reference = $test-dir/test.$output-extension
 

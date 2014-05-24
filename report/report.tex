@@ -27,10 +27,13 @@ I reorganized the files to make my solution easier to explain.
 \end{itemize}
 
 \section{Problem 1 \& 3}
+The config file  for the baseline system is located at  baseline/config.
+The config file for the baseline system with further tuning on  development set is located at baseline-tune/config.
 
-A baseline system is not so interesting.
-I address subproblem 1 and 3 together, i.e, I get a fine-tuned system using the development set. 
-The config file is located at baseline/config.
+The output is located at evaluation directory correspondingly.
+My first attempt of using mert for tuning(which I used for my previous project) crashed surprisingly. I turned to the moses-support mailing list for help.
+
+
 
 \section{Problem 2}
 The first idea comes to my mind is to simply append all of the terminology table to the training table. The sript split\_term.py is used to split the terminology into seperate files. Then I manually append them to the corresponding training files.
@@ -46,9 +49,11 @@ This may be the best approach to deal with external terminology dictionary.
 \section{Problem 5: further improvement}
 There are at least two ways to improve the translation quality:
 \begin{itemize}
-    \item As German is an agglutinative language, splitting up the compound words can reduce the sparsity. 
-    \item As the word order in German has much more freedom than English, a preprocessing step which always normalize German sentence to SVO can reduce the sparisity as well.
+    \item As German is an agglutinative language, splitting up the compound words can reduce the sparsity. We can already find a lot of OOV words in the output of baseline system.
+    \item As the word order in German has much more freedom than English, a preprocessing step which always normalize German sentence to SVO can reduce the sparsity as well.
 \end{itemize}
+For the first idea, I found tools such as jwordsplitter\footnote{\url{http://www.danielnaber.de/jwordsplitter/index_en.html}} and compound-splitter\footnote{\url{https://github.com/dweiss/compound-splitter}}. 
+For the second idea, I found that the idea has been explored since 2005.
 
 
 \section{Result}
@@ -57,8 +62,9 @@ There are at least two ways to improve the translation quality:
     \begin{tabular}{l|r|r|r|r}
         Name & BLEU & METEOR & GTM & TER \\
         Baseline & & & & \\
-        Baseline+append terminology & & & & \\
-        Baseline+XML markup & & & & \\
+        Baseline+Tuning & & & & \\
+        Baseline+Tuning+append terminology & & & & \\
+        Baseline+Tuning+XML markup & & & & \\
         Compound words segment& & & &\\
         Word order normalize & & & &\\
         Compound words segment+ word order normalize & & & &\\
