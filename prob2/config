@@ -7,13 +7,13 @@
 home-dir = /home/wqiu
 exp-dir = /home/wqiu/work/wqiu/bmmt/
 
-working-dir = $home-dir/work/wqiu/bmmt/baseline-tune
+working-dir = $home-dir/work/wqiu/bmmt/prob2
 moses-src-dir = $home-dir/work/root/opt/moses
 moses-script-dir = $moses-src-dir/scripts
 moses-bin-dir = $moses-src-dir/bin
 external-bin-dir = $home-dir/work/root/usr/bin 
 data-dir = $exp-dir/data
-train-dir = $data-dir/train
+train-dir = $data-dir/train_term
 dev-dir = $data-dir/dev
 test-dir = $data-dir/test
 irstlm-dir = $home-dir/work/root/opt/irstlm/bin
@@ -32,7 +32,7 @@ detruecaser = $moses-script-dir/recaser/detruecase.perl
 
 input-extension = de
 output-extension = en
-# pair-extension = de-en
+#pair-extension = de-en
 
 #################################################################
 # PARALLEL CORPUS PREPARATION: 
@@ -40,7 +40,7 @@ output-extension = en
 
 [CORPUS]
 
-max-sentence-length = 80 
+max-sentence-length = 80
 
 [CORPUS:bmmt] 
 raw-stem = $train-dir/train
@@ -204,7 +204,7 @@ multi-bleu = "$moses-script-dir/generic/multi-bleu.perl -lc"
 #
 # meteor = 
 
-[EVALUATION:baseline-tune]
+[EVALUATION:prob2]
 raw-input = $test-dir/test.$input-extension
 raw-reference = $test-dir/test.$output-extension
 
