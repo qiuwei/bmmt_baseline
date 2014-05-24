@@ -120,7 +120,7 @@ lexicalized-reordering = msd-bidirectional-fe
 ### tuning script to be used
 #
 tuning-script = $moses-script-dir/training/mert-moses.pl
-tuning-settings = "-mertdir $moses-bin-dir --batch-mira"
+tuning-settings = "-mertdir $moses-bin-dir --pairwise-ranked"
 
 ### specify the corpus used for tuning 
 # it should contain 100s if not 1000s of sentences
