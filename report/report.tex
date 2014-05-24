@@ -59,15 +59,15 @@ For the second idea, I found that the idea has been explored since 2005.
 \section{Result}
 \begin{table}
     \centering
-    \begin{tabular}{l|r|r|r|r}
-        Name & BLEU & METEOR & GTM & TER \\
-        Baseline & & & & \\
-        Baseline+Tuning & & & & \\
-        Baseline+Tuning+append terminology & & & & \\
-        Baseline+Tuning+XML markup & & & & \\
-        Compound words segment& & & &\\
-        Word order normalize & & & &\\
-        Compound words segment+ word order normalize & & & &\\
+    \begin{tabular}{l|r|r|r|r|r}
+        Name & Tuning & BLEU & METEOR & GTM & TER \\
+        Baseline & none& & & & \\
+        Baseline & batch-mira & & & & \\
+        Baseline+append terminology & pro & & & & \\
+        Baseline+XML markup & none & & & &\\
+        Compound words segment & none & & & &\\
+        Word pre-ordering & none & & & &\\
+        Compound words segment+ word order normalize & none & & & &\\
     \end{tabular}
     \caption{Result}
     \label{tab:result}
